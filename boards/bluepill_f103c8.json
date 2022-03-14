@@ -5,7 +5,7 @@
     },
     "core": "stm32",
     "cpu": "cortex-m3",
-    "extra_flags": "-DSTM32F1 -DSTM32F103xB",
+    "extra_flags": "-DSTM32F1 -DSTM32F10X_MD -DSTM32F103xB",
     "f_cpu": "72000000L",
     "hwids": [
       [
@@ -42,7 +42,8 @@
     "cmsis",
     "libopencm3",
     "stm32cube",
-    "zephyr"
+    "zephyr",
+    "spl"
   ],
   "name": "BluePill F103C8",
   "upload": {
