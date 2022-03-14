@@ -47,8 +47,16 @@ elif core == "stm32l4":
         join(env.PioPlatform().get_package_dir(
             "framework-arduinoststm32-stm32l4"),
             "tools", "platformio-build.py"))
+elif core == "stm32l0":
+    build_script = join(
+        env.PioPlatform().get_package_dir("framework-arduinoststm32l0"),
+        "tools", "platformio-build.py")
 else:
-    SConscript(
-        join(env.PioPlatform().get_package_dir(
-            "framework-arduinoststm32"),
-            "tools", "platformio-build.py"))
+    build_script = join(env.PioPlatform().get_package_dir(
+        "framework-arduinoststm32"), "tools", "platformio", "platformio-build.py")
+
+if not isfile(build_script):
+    sys.stderr.write("Error: Missing PlatformIO build script %s!\n" % build_script)
+    env.Exit(1)
+
+SConscript(build_script)
